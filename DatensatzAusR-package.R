@@ -9,3 +9,5 @@ fct_count(gp$continent)
 
 gp$continent <- fct_drop(gp$continent, "Antarctica")
 fct_count(gp$continent)
+
+skim(gp)
