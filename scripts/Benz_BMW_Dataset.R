@@ -1,4 +1,4 @@
-data = read.csv("./data/benzfinal.csv")
+data = read.csv("../data/benzfinal.csv")
 
 #1 Overview of dataquality
 skim(data)

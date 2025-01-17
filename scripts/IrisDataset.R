@@ -54,7 +54,7 @@ aggregate(data$Sepal.Length, by = list(data$Species), FUN = mean)
 data$Sepal.Size <- ifelse(data$Sepal.Length > 5.0, "Ja", "Nein")
 
 #10 Save dataset ----
-write.csv(data, file = "./data/iris_dataset_edited.csv")
+write.csv(data, file = "../data/iris_dataset_edited.csv")
 
 #11 Filter data ----
 data_filtered <- data[data$Sepal.Length > 6.0, ]
