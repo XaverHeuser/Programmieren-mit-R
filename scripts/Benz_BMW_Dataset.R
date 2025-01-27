@@ -1,5 +1,5 @@
 #0 Get the data ----
-data = read.csv("./data/benzfinal.csv")
+data <- read.csv("./data/benzfinal.csv")
 
 library(dplyr)
 library(DataExplorer)
