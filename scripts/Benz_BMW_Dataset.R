@@ -1,5 +1,5 @@
 #0 Get the data ----
-data = read.csv("./data/benzfinal.csv")
+data <- read.csv("./data/benzfinal.csv")
 
 library(dplyr)
 library(DataExplorer)
@@ -32,8 +32,8 @@ head(last_df)
 
 #4 Data analysis and aggregation ----
 data$manufacturer_new <- str_extract(data$Manufacturer, "^[A-Za-z-]+")
-avg_ps <- data %>% group_by(manufacturer_new) %>% summarise(avg_ps = mean(Ps))
-print(avg_ps)
+aggregate(Ps ~ manufacturer_new, data = data, FUN = mean)
+
 
 count_cars_per_year <- data %>% group_by(Year, manufacturer_new) %>% summarise(count = n())
 print(count_cars_per_year)
@@ -41,6 +41,7 @@ print(count_cars_per_year)
 
 #5 String operations ----
 data_GL <- filter(data, grepl("GL", Model))
+data_GL <- data %>% filter(str_detect(Model, "GL"))
 head(data_GL)
 
 data <- data %>%
@@ -89,3 +90,9 @@ data_sample <- data[data$Price > 100000, c("manufacturer_new", "Model", "Price",
 head(data_sample)
 
 write.csv(data_sample, file = "./data/BenzBMW_data_sample.csv", row.names = FALSE)
+
+
+#11 Linear regression ----
+head(data)
+lr_model_1 <- lm(Price ~ manufacturer_new + Ps + state + Year + luxus_wagen, data = data)
+summary(lr_model_1)
